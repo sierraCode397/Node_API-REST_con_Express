@@ -11,21 +11,46 @@ app.get('/nueva-ruta', (req, res) =>{
 });
 
 app.get('/productos', (req, res) =>{
-  res.json({
-    name: 'Product 1',
-    price: 1000,
-  });
+  res.json([
+    {
+      name: 'Product 1',
+      price: 1000,
+    },
+    {
+      name: 'Product 2',
+      price: 2000,
+    },
+  ]);
 });
 
-app.get('/categoria', (req, res) =>{
+app.get('/categorie', (req, res) =>{
   res.json({
     1: 'Electronicos',
     2: 'Shose',
     3: 'Artesanal'
+  });
+});
 
+app.get('/products/:productId', (req, res) =>{
+    const id = req.params.productId;
+  //const { id } = req.params;  es lo mismo de arriba
+  res.json(
+    {
+      id,
+      name: 'Product 2',
+      price: 2000,
+    }
+  );
+});
+
+app.get('/categorie/:categorieId/products/:productsId', (req, res) =>{
+  const { categorieId, productsId }= req.params;
+  res.json({
+    categorieId ,
+    productsId,
   });
 });
 
 app.listen(port, () => {
-  console.log(`Mi port 3000 Listening at http://localhost:${port}`);
+  //console.log(`Mi port 3000 Listening at http://localhost:${port}`);
 });
