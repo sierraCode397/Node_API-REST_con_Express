@@ -33,12 +33,20 @@ router.get('/:productId', (req, res) =>{
     }
   );
 });
-
+"https://loremflickr.com/640/480?lock=7979798060072960"
 /*
   router.get('/products/filter', (req,res) =>{
     res.send('Yo soy un filtro');
   });
 */
+
+router.post('/', (req, res) =>{
+  const body = req.body;
+  res.json({
+    message: 'created',
+    data: body,
+  })
+});
 
 
 module.exports = router;
