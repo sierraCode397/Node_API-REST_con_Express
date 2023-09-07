@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { faker } = require('@faker-js/faker');
 
+//--------------------------------
+
 router.get('/', (req, res) =>{
   const productos = [];
   //Uso de faker
@@ -18,9 +20,11 @@ router.get('/', (req, res) =>{
   res.json(productos);
 });
 
+
 router.get('/filter', (req,res) =>{
   res.send('Yo soy un filtro');
 });
+
 
 router.get('/:productId', (req, res) =>{
     const id = req.params.productId;
@@ -33,20 +37,56 @@ router.get('/:productId', (req, res) =>{
     }
   );
 });
-"https://loremflickr.com/640/480?lock=7979798060072960"
+
 /*
   router.get('/products/filter', (req,res) =>{
     res.send('Yo soy un filtro');
   });
 */
 
+//--------------------------------
+
 router.post('/', (req, res) =>{
   const body = req.body;
   res.json({
     message: 'created',
     data: body,
-  })
+  });
 });
 
+//--------------------------------
+
+//O PUT
+router.patch('/:id', (req, res) =>{
+  const {id} = req.params;
+  const body = req.body;
+  res.json({
+    message: 'update',
+    data: body,
+    id,
+  });
+});
+
+//--------------------------------
+
+router.put('/:id', (req, res) =>{
+  const {id} = req.params;
+  const body = req.body;
+  res.json({
+    message: 'update',
+    data: body,
+    id,
+  });
+});
+
+//--------------------------------
+
+router.delete('/:id', (req, res) =>{
+  const {id} = req.params;
+  res.json({
+    message: 'deleted',
+    id,
+  });
+});
 
 module.exports = router;
