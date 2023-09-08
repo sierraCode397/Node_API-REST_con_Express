@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const CategorieService = require('./../services/categorieServices');
+const service = new CategorieService();
+
+
 
 router.get('/', (req, res) =>{
-  res.json({
-    1: 'Electronicos',
-    2: 'Shose',
-    3: 'Artesanal'
-  });
+  const categories = service.find();
+  res.json(categories);
 });
 
 router.get('/:categorieId/products/:productsId', (req, res) =>{
@@ -17,37 +18,44 @@ router.get('/:categorieId/products/:productsId', (req, res) =>{
   });
 });
 
+router.get('/:id', (req, res) =>{
+  const id = req.params.id;
+  const categorie = service.findOne(id);
+  res.json(categorie);
+});
+
+//---------------------------------------
+
+router.post('/', (req, res) =>{
+  const body = req.body;
+  const newCategorie = service.create(body)
+  res.status(201).json(newCategorie);
+});
+
 //---------------------------------------
 
 router.patch('/:id', (req, res) =>{
   const {id} = req.params;
   const body = req.body;
-  res.json({
-    message: 'update',
-    data: body,
-    id,
-  });
+  const categorie = service.update(id, body);
+  res.json(categorie);
 });
+
 //---------------------------------------
 
-router.put('/:id', (req, res) =>{
+router.patch('/:id', (req, res) =>{
   const {id} = req.params;
   const body = req.body;
-  res.json({
-    message: 'update',
-    data: body,
-    id,
-  });
+  const categorie = service.update(id, body);
+  res.json(categorie);
 });
 
 //---------------------------------------
 
 router.delete('/:id', (req, res) =>{
   const {id} = req.params;
-  res.json({
-    message: 'deleted',
-    id,
-  });
+  const respuesta = service.delete(id);
+  res.json(respuesta);
 });
 
 module.exports = router;
