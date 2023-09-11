@@ -15,11 +15,15 @@ router.get('/filter', (req,res) =>{
 });
 
 
-router.get('/:productId', async(req, res) =>{
-  const id = req.params.productId;
-  //const { id } = req.params;  es lo mismo de arriba
-  const product = await service.findOne(id);
-  res.json(product);
+router.get('/:productId', async(req, res, next) =>{
+  try {
+    const id = req.params.productId;
+    //const { id } = req.params;  es lo mismo de arriba
+    const product = await service.findOne(id);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /*
