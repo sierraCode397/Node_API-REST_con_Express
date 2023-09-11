@@ -5,8 +5,8 @@ const service = new CategorieService();
 
 
 
-router.get('/', (req, res) =>{
-  const categories = service.find();
+router.get('/', async (req, res) =>{
+  const categories = await service.find();
   res.json(categories);
 });
 
@@ -18,43 +18,49 @@ router.get('/:categorieId/products/:productsId', (req, res) =>{
   });
 });
 
-router.get('/:id', (req, res) =>{
+router.get('/:id', async (req, res) =>{
   const id = req.params.id;
-  const categorie = service.findOne(id);
+  const categorie = await service.findOne(id);
   res.json(categorie);
 });
 
 //---------------------------------------
 
-router.post('/', (req, res) =>{
+router.post('/', async (req, res) =>{
   const body = req.body;
-  const newCategorie = service.create(body)
+  const newCategorie = await service.create(body)
   res.status(201).json(newCategorie);
 });
 
 //---------------------------------------
 
-router.patch('/:id', (req, res) =>{
+router.patch('/:id', async (req, res) =>{
+  try {
+    const {id} = req.params;
+    const body = req.body;
+    const categori = await service.update(id, body);
+    res.json(categori);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message,
+    });
+  }
+});
+
+//---------------------------------------
+
+router.patch('/:id', async (req, res) =>{
   const {id} = req.params;
   const body = req.body;
-  const categorie = service.update(id, body);
+  const categorie = await service.update(id, body);
   res.json(categorie);
 });
 
 //---------------------------------------
 
-router.patch('/:id', (req, res) =>{
+router.delete('/:id', async (req, res) =>{
   const {id} = req.params;
-  const body = req.body;
-  const categorie = service.update(id, body);
-  res.json(categorie);
-});
-
-//---------------------------------------
-
-router.delete('/:id', (req, res) =>{
-  const {id} = req.params;
-  const respuesta = service.delete(id);
+  const respuesta = await service.delete(id);
   res.json(respuesta);
 });
 

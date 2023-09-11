@@ -18,7 +18,7 @@ class CategorieService{
     }
   }
 
-  create(data){
+  async create(data){
     const newCategorie = {
       id: faker.string.uuid(),
       ...data
@@ -26,13 +26,20 @@ class CategorieService{
     this.categories.push(newCategorie);
     return newCategorie;
   }
-  find(){
-    return this.categories;
-  }
-  findOne(id){
+
+  async find(){
+    return new Promise((resolve) =>{
+      setTimeout(() => {
+      resolve( this.categories)
+      }, 5000);
+    });
+    }
+
+  async findOne(id){
     return this.categories.find(item => item.id === id);
   }
-  update(id, changes){
+
+  async update(id, changes){
     const index = this.categories.findIndex(item => item.id === id);
     if (index === -1){
       throw new Error('Categorie not found')
@@ -44,7 +51,8 @@ class CategorieService{
     };
     return this.categories[index];
   }
-  delete(id){
+
+  async delete(id){
     const index = this.categories.findIndex(item => item.id === id);
     if (index === -1){
       throw new Error('Categorie not found')
