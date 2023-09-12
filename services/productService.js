@@ -34,7 +34,7 @@ async find(){
   return new Promise((resolve) =>{
     setTimeout(() => {
     resolve( this.products)
-    }, 5000);
+    }, 1000);
   });
   }
 
