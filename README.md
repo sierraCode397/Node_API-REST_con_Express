@@ -1,6 +1,6 @@
 # Node_API-REST_con_Express
 
-Esta es una API de ejemplo que proporciona datos relacionados con "Productos en un E-Commerce, asi como Categorias y usuarios.
+Esta es una API de ejemplo que proporciona datos relacionados con "Productos en un E-Commerce, asi como Categorias y usuarios".
 
 ## Rutas Disponibles
 
@@ -61,9 +61,14 @@ Este proyecto incluye varios scripts que puedes ejecutar. A continuación, se de
 - **test**: Ejecuta pruebas unitarias o de integración. Puedes personalizar este script según tus necesidades específicas.
 
 
+## Autor 
+
+- **Isaac Luisjuan**
+
+
 Asegúrate de tener Node.js y npm instalados en tu sistema antes de ejecutar estos scripts.
 
-¡Gracias por tu interés en este proyecto! Espero que sea una experiencia interesante y satisfactoria. Si tienes alguna pregunta o necesitas ayuda
+¡Gracias por tu interés en este proyecto! Espero que sea una experiencia interesante y satisfactoria.
 
 
 
