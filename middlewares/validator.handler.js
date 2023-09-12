@@ -7,7 +7,7 @@ function validatorHandler(schema, property) {
     //req.body
     //req.params
     //req.query
-    const {error} = schema.validate(data, { abortEarly: false });
+    const {error} = schema.validate(data, { abortEarly: false }); //Aqui se optiene un error en caso de que la validacion falle
     if(error){
       next(boom.badRequest(error));
     }
