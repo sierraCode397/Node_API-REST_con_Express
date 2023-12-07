@@ -11,7 +11,7 @@ app.get('/api', (req, res) =>{
   res.send('Hola, es mi server de express ');
 });
 
-const whiteList = ['http://localhost:8080', 'https://myapp.co'];
+const whiteList = ['http://localhost:8080', 'http://localhost:3000', 'https://myapp.co', 'https://e-commerce-next-six.vercel.app', 'https://admin-ecommerce-next.vercel.app'];
 const options = {
   origin : (origin, callback)=> {
     if(whiteList.includes(origin) || !origin){

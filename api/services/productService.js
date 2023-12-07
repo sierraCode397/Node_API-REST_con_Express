@@ -13,9 +13,9 @@ class ProductsServices{
     for (let i = 0; i < limit; i++) {
       this.products.push({
         id: faker.string.uuid(),
-        name: faker.commerce.productName(),
+        title: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(), 10),
-        image: faker.image.url(),
+        images: faker.image.url(),
         isBlock: faker.datatype.boolean(),
       });
     }
